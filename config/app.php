@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'ProyectoORMBLog'),
 
     /*
     |--------------------------------------------------------------------------
@@ -92,7 +92,8 @@ return [
     */
 
     'fallback_locale' => 'es',
-    'locales' => ['es', 'en', 'zh', 'cs'],
+    'locales' => ['es', 'en'],
+    //'locales' => ['es', 'en', 'zh', 'cs'],
     /*'available_langs' => [
         "es" => "Español",
         "en" => "English"

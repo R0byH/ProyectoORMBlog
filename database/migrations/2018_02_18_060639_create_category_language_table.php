@@ -24,14 +24,9 @@ class CreateCategoryLanguageTable extends Migration
             //$table->timestamps();
 
             //LLaves Foráneas
-            $table->foreign("categories_id")
-                ->references("id")
-                ->on("categories")
-                ->onDelete("RESTRICT");
-            $table->foreign("languages_id")
-                ->references("id")
-                ->on("languages")
-                ->onDelete("RESTRICT"); 
+            $table->foreign("categories_id")->references("id")->on("categories");
+            $table->foreign("languages_id")->references("id")->on("languages");
+           
         });
     }
 

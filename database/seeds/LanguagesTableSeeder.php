@@ -15,7 +15,7 @@ class LanguagesTableSeeder extends Seeder
      */
     public function run()
     {
-        $posts =  Post::get();// obtener todos los posts
+        $posts =  Post::get();
         $faker = Faker\Factory::create();
         $categories=Category::get();
         
@@ -35,7 +35,7 @@ class LanguagesTableSeeder extends Seeder
                     'slug'=>$category[0]->language('en')->first()->pivot->slug,
                     'content'=>$faker->text(rand(200, 250)),
                     );
-            $registro3[]=array(
+           /* $registro3[]=array(
                     'posts_id'=>$post->id,
                     'title'=>$faker->sentence(2),
                     'slug'=>$category[0]->language('zh')->first()->pivot->slug,
@@ -46,7 +46,7 @@ class LanguagesTableSeeder extends Seeder
                         'title'=>$faker->sentence(2),
                         'slug'=>$category[0]->language('cs')->first()->pivot->slug,
                         'content'=>$faker->text(rand(200, 250)),
-                        );
+            );*/
             }
             
        
@@ -57,10 +57,10 @@ class LanguagesTableSeeder extends Seeder
         $en=Language::where('iso6391','en')->first();
         $en->posts()->sync($registro2);
 
-        $zh=Language::where('iso6391','zh')->first();
+/*        $zh=Language::where('iso6391','zh')->first();
         $zh->posts()->sync($registro3);
 
         $cs=Language::where('iso6391','cs')->first();
-        $cs->posts()->sync($registro4);
+        $cs->posts()->sync($registro4);*/
     }
 }
