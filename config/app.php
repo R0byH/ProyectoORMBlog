@@ -92,7 +92,7 @@ return [
     */
 
     'fallback_locale' => 'es',
-
+    'locales' => ['es', 'en', 'zh', 'cs'],
     /*'available_langs' => [
         "es" => "Español",
         "en" => "English"

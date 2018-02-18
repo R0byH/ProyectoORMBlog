@@ -15,7 +15,23 @@ class CreateCategoryLanguageTable extends Migration
     {
         Schema::create('category_language', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('categories_id')->unsigned();
+            $table->integer('languages_id')->unsigned();
+            
+            $table->string('label');
+            $table->string('slug');
+            $table->text('description');
+            //$table->timestamps();
+
+            //LLaves Foráneas
+            $table->foreign("categories_id")
+                ->references("id")
+                ->on("categories")
+                ->onDelete("RESTRICT");
+            $table->foreign("languages_id")
+                ->references("id")
+                ->on("languages")
+                ->onDelete("RESTRICT"); 
         });
     }
 

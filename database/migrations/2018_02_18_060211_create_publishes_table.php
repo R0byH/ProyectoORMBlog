@@ -15,6 +15,9 @@ class CreatePublishesTable extends Migration
     {
         Schema::create('publishes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('slug');
+            $table->string('label');
+            $table->boolean('is_publish');
             $table->timestamps();
         });
     }

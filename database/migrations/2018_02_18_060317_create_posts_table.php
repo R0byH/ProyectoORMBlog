@@ -15,7 +15,21 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('autor_id')->unsigned();
+            $table->integer('publishes_id')->unsigned();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
+
+            //LLaves Foráneas
+            $table->foreign("publishes_id")
+                ->references("id")
+                ->on("publishes")
+                ->onDelete("RESTRICT");
+            $table->foreign("autor_id")
+                ->references("id")
+                ->on("users")
+                ->onDelete("RESTRICT");    
         });
     }
 

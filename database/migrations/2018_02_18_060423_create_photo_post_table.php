@@ -15,7 +15,21 @@ class CreatePhotoPostTable extends Migration
     {
         Schema::create('photo_post', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('use');
+            $table->integer('order')->unsigned();
             $table->timestamps();
+            $table->integer('photos_id')->unsigned();
+            $table->integer('posts_id')->unsigned();
+            
+            //LLaves Foráneas
+            $table->foreign("photos_id")
+                ->references("id")
+                ->on("photos")
+                ->onDelete("RESTRICT");
+            $table->foreign("posts_id")
+                ->references("id")
+                ->on("posts")
+                ->onDelete("RESTRICT"); 
         });
     }
 
