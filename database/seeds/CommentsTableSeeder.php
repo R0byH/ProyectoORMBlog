@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Modules\Post;
-use App\Modules\User;
+use App\Models\Post;
+use App\Models\User;
 use Faker\Generator;
 
 class CommentsTableSeeder extends Seeder

@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Models\Publish;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,12 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
+$factory->define(Publish::class, function (Faker $faker) {  //la clave es la clase
+
     return [
-        'first_name' =>$faker->firstName,
-        'last_name' => $faker->lastName,
-        'email' => $faker->unique()->safeEmail,
-        'password' => bcrypt('hola123'), // secret
-        'remember_token' => str_random(10),
+       'slug' =>$faker->slug,
+       'label' =>$faker->unique()->word,
+       'is_publish' =>$faker->boolean($chanceOfGettingTrue=50),
+       
     ];
 });

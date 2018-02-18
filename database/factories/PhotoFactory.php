@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use App\Models\Photo;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,15 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
-    return [
-        'first_name' =>$faker->firstName,
-        'last_name' => $faker->lastName,
-        'email' => $faker->unique()->safeEmail,
-        'password' => bcrypt('hola123'), // secret
-        'remember_token' => str_random(10),
+$factory->define(Photo::class, function (Faker $faker) {
+    $types = [
+        "jpg",
+    ];
+
+        return [
+        //
+        'filename' =>$faker->unique()->image('public/images',150,150, null, false), 
+            //$faker->imageUrl(50,50),
+        'type'=> $types [array_rand($types,1)],
     ];
 });

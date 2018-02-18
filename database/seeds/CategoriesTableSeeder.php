@@ -39,6 +39,6 @@ class CategoriesTableSeeder extends Seeder
                     'description'=>$faker->text(rand(10, 15)),
                     );
             }    
-        $category->languages()->sync($registro);});// insertando 
+        $category->languages()->sync($registro);}); 
     }
 }
