@@ -1,40 +1,89 @@
 @extends('layouts.app')
-@section('title')
-{{$title}}
-@endsection
+
 @section('content')
-<div class="">
-  @foreach( $posts as $post )
-  <?php //dd($post->publish->is_publish)?>
-    @if ($post->publish->is_publish==1)  
-  <div class="list-group">
-      
-    <div class="list-group-item">
-      <h3><a href="{{ route('posts.show',$post) }}">{{ $post->languages()->where('iso6391',App::getLocale())->first()->pivot->title }}</a>
-       @if ( $post->autor_id==Auth::id())   
-          <a href="{{ route('publishes.edit',$post->id)}}" class="btn btn-default" style="float: right">Edit Post</a>
-       @endif
-      
-      </h3>
-        <?php $photos=$post->photos()->get();  ?>
-        <div>
-        @foreach ($photos as $photo)
-           <img  src="{{ asset('/images/') }}/{{ $photo->filename }}"> 
-        @endforeach 
+<div class="container">
+    <div class="row">
+        <div class="col-md-7 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">Register</div>
+
+                <div class="panel-body">
+                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label">First Name</label>
+
+                            <div class="col-md-6">
+                                <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required autofocus>
+
+                                @if ($errors->has('first_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('first_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+                            <label for="last_name" class="col-md-4 control-label">Last Name</label>
+
+                            <div class="col-md-6">
+                                <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autofocus>
+
+                                @if ($errors->has('last_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>    
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label">Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        {{$post->languages()->where('iso6391',App::getLocale())->first()->pivot->content}}
-      <p>{{ $post->created_at->format('M d,Y \a\t h:i a') }} By <a href="{{ route('user',$post->autor_id)}}">{{ $post->author->name }}</a>
-      {{trans('messages.comments')}}->{{$post->comments()->count()}} </p>
     </div>
-    
-    <div class="list-group-item">
-      <article>
-        {!! str_limit($post->body, $limit = 1500, $end = '....... <a href='.url("/".$post->languages()->first()->pivot->slug).'>Read More</a>') !!}
-      </article>
-    </div>
-  </div>
-  @endif
-  @endforeach
-   <a href="{{ route('posts.create')}}" class="btn btn-default" >Add Post</a>
 </div>
 @endsection

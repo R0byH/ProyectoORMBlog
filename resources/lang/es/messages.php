@@ -8,4 +8,6 @@ return [
     'categories'=>'Categorias',
     'comments'=>'Commentarios',
     'publishes'=>'Publicaciones',
+   
 ];
+?>

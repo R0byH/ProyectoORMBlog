@@ -12,6 +12,13 @@
 */
 
 
+Route::get('/', function () {
+    $posts=  App\Models\Post::get();
+    
+    return view('home')->withTitle("Entradas")->withPosts($posts);
+})->name('home');
+
+
 Route::resource('publishes',"ManagePublishesController",[
     'only'         => ['index',"show","edit","store","update","create"],
 ]);
@@ -28,14 +35,6 @@ Route::resource('comments',"ManageCommentsController",[
 Route::get('/', function () {
     return view('welcome');
 });*/
-
-Route::get('/', function () {
-    $posts= App\Models\Post::get();
-    
-    return view('home')->withTitle("Entradas")->withPosts($posts);
-})->name('home');
-
-
 
 Route::get('/comments/create/{id_post}',function($id_post){
  $post=  App\Models\Post::find($id_post);

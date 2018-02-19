@@ -9,3 +9,4 @@ return [
     'comments'=>'Comments',
     'publishes'=>'Publishes',
 ];
+?>
