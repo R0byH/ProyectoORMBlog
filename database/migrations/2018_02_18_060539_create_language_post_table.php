@@ -20,7 +20,7 @@ class CreateLanguagePostTable extends Migration
             $table->string('title');
             $table->string('slug');          
             $table->text('content');
-
+            $table->timestamps();
             //LLaves Foráneas
             $table->foreign("posts_id")
                 ->references("id")

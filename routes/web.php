@@ -24,13 +24,13 @@ Route::resource('comments',"ManageCommentsController",[
     'only'         => ["edit","store","update","destroy"],
 ]);
 
-
+/*
 Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::get('/', function () {
-    $posts=  App\Post::get();
+    $posts=  App\Models\Post::get();
     
     return view('home')->withTitle("Entradas")->withPosts($posts);
 })->name('home');
