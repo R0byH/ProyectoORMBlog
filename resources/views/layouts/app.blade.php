@@ -20,7 +20,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Blog</a>
+          <!--<a class="navbar-brand" href="#">Blog</a>-->
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
@@ -94,18 +94,7 @@
         </ul>
       </div>
       @endif
-      <div class="row">
-        <div class="col-md-9 ">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h2>@yield('title')</h2>
-              @yield('title-meta')
-            </div>
-            <div class="panel-body">
-              @yield('content')
-            </div>
-          </div>
-         </div>    
+      <div class="row">   
         <div class="col-md-3 ">    
             <div class="panel panel-default">
             <div class="panel-heading">
@@ -148,6 +137,17 @@
                 </div>
             </div>  
         </div>
+        <div class="col-md-9 ">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h2>@yield('title')</h2>
+              @yield('title-meta')
+            </div>
+            <div class="panel-body">
+              @yield('content')
+            </div>
+          </div>
+         </div> 
        
       </div>
     </div>
