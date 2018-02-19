@@ -30,7 +30,7 @@ Route::get('/', function () {
 });*/
 
 Route::get('/', function () {
-    $posts=  App\Models\Post::get();
+    $posts= App\Models\Post::get();
     
     return view('home')->withTitle("Entradas")->withPosts($posts);
 })->name('home');
@@ -38,7 +38,7 @@ Route::get('/', function () {
 
 
 Route::get('/comments/create/{id_post}',function($id_post){
- $post=  App\Post::find($id_post);
+ $post=  App\Models\Post::find($id_post);
     
  return view("comments.create")->withId($id_post);
 })->name('comments.create');
@@ -52,13 +52,13 @@ Route::get('/logout',function(){
 })->name('logout');
 
 Route::get('user/{user_id}',function($user_id){
-    $user=App\User::find($user_id);
+    $user=App\Models\User::find($user_id);
  return view('auth.profile')->withUser($user);
  
 })->name('user');
 
 Route::get('user/{user_id}/post',function($user_id){
-    $posts=App\Post::where("autor_id", "=", $user_id)->get();
+    $posts=App\Models\Post::where("autor_id", "=", $user_id)->get();
     
     
  return  view('home')->withTitle("Entradas ".Auth::user()->name)->withPosts($posts);
@@ -66,7 +66,7 @@ Route::get('user/{user_id}/post',function($user_id){
 })->name('user-post');
 
 Route::get('category/{slug}',function($slug){
-    $language=  App\Language::where("iso6391",App::getLocale())->first();
+    $language= App\Models\Language::where("iso6391",App::getLocale())->first();
     $posts=$language->posts()->where("slug",$slug)->get();
     
  return  view('home')->withTitle("Entradas ".$slug)->withPosts($posts);
@@ -74,8 +74,8 @@ Route::get('category/{slug}',function($slug){
 })->name('category-post');
 
 Route::get('publish/{id}',function($id){
-    $posts=App\Post::where("publishes_id", $id)->get();
-    $publish=App\Publish::find($id);
+    $posts=App\Models\Post::where("publishes_id", $id)->get();
+    $publish=App\Models\Publish::find($id);
  return  view('home')->withTitle("Entradas ".$publish->label)->withPosts($posts);
  
 })->name('publish-post');
